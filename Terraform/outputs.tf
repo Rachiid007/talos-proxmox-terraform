@@ -20,10 +20,10 @@ output "control_node_ips" {
 
 output "worker_node_ips" {
   value       = var.worker_node_ips
-  description = "Static IPs of workers"
+  description = "Static IPs of worker nodes"
 }
 
 output "cluster_status" {
-  value       = "Cluster deployed successfully at ${timestamp()}"
-  description = "Simple success message once apply finishes"
+  value       = "Cluster deployed at ${timestamp()}"
+  description = "Status of the cluster deployment"
 }

@@ -46,11 +46,11 @@ variable "talos_cluster_name" {
 }
 variable "talos_version" {
   type    = string
-  default = "1.10.3"
+  default = "1.10.4"
 }
 variable "talos_schematic_id" {
   type    = string
-  default = "ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515"
+  default = "ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515" # This is the schematic ID for Talos 1.10.4 with qemu-guest-agent
 }
 
 # Node → Proxmox‑host maps
@@ -76,26 +76,18 @@ variable "dns_domain" {
 }
 variable "talos_install_disk" {
   type    = string
-  default = "/dev/vda"
+  default = "/dev/sda"
 }
 
 # Optional machine‑config patches
 variable "control_machine_config_patches" {
-  type = list(string)
-  default = [<<EOF
-machine:
-  install:
-    disk: "/dev/vda"
-EOF
-  ]
+  type        = list(string)
+  default     = []
+  description = "Optional machine config patches for control plane. If empty, a default patch for the install disk will be generated using var.talos_install_disk."
 }
 
 variable "worker_machine_config_patches" {
-  type = list(string)
-  default = [<<EOF
-machine:
-  install:
-    disk: "/dev/vda"
-EOF
-  ]
+  type        = list(string)
+  default     = []
+  description = "Optional machine config patches for workers. If empty, a default patch for the install disk will be generated using var.talos_install_disk."
 }
